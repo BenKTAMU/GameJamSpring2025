@@ -20,4 +20,6 @@ public class Projectile : MonoBehaviour
         Vector2 reflectedVelocity = Vector2.Reflect(incomingVelocity, normal) * bounciness;
         rb.velocity = reflectedVelocity;
     }
+    
+    
 }

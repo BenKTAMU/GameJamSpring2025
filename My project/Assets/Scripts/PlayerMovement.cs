@@ -9,10 +9,13 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public GameObject projectilePrefab;
+
     public Camera cam;
 
     private Vector2 movement;
     private Vector2 mousePos;
+    private bool isAttacking;
     
 
     // Update is called once per frame
@@ -20,9 +23,15 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            meleeAttack();
+        }
         
         
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        
     }
 
     void FixedUpdate()
@@ -34,5 +43,25 @@ public class PlayerMovement : MonoBehaviour
         rb.rotation = angle;
         
         
+    }
+
+    void meleeAttack()
+    {
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rbProjectile = projectile.GetComponent<Rigidbody2D>();
+        if (rbProjectile != null)
+        {
+            rbProjectile.AddForce(transform.up * 300f, ForceMode2D.Impulse);
+        }
+        Destroy(projectile, 0.2f);
+        //StartCoroutine(ResetAttack());
+    }
+
+    IEnumerator ResetAttack()
+    {
+        moveSpeed = 0.8f;
+        yield return new WaitForSeconds(2f);
+        isAttacking = false;
+        moveSpeed = 5f;
     }
 }
