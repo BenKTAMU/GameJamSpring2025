@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounciness: 0.8
-  lifetime: 5
+  lifetime: 1
 --- !u!50 &8508286281034524854
 Rigidbody2D:
   serializedVersion: 4

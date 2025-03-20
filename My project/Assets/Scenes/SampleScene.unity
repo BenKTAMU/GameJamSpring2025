@@ -187,7 +187,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b8406c9c4a2144688fe17069b52f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 1
+  enemyCount: 10
 --- !u!4 &932210231
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072c497523880364ca7ec61f7081a2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystem: {fileID: 4556340502822758020, guid: 71f9e2d908cf9b84f99a72f12ddf6e1f, type: 3}
 --- !u!50 &1311759352
 Rigidbody2D:
   serializedVersion: 4

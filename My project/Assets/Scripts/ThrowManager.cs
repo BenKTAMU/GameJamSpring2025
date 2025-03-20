@@ -38,7 +38,10 @@ public class ThrowManager : MonoBehaviour
 
     void ShowTrajectory(Vector3 startPos, Vector3 force)
     {
-        lineRenderer.positionCount = 500; // Adjust for trajectory detail
+        float trajectoryLength = force.magnitude * 0.5f;
+        Debug.Log("Trajectory legnth: " + trajectoryLength);
+        lineRenderer.positionCount = Mathf.Clamp((int)trajectoryLength, 0, 500);
+        //lineRenderer.positionCount = 500; // Adjust for trajectory detail
         Vector3 velocity = force;
         float timestep = 0.1f;
         Vector3 currentPos = startPos;
