@@ -9,6 +9,8 @@ public class ThrowManager : MonoBehaviour
     public LayerMask wallLayerMask;
     private Vector3 dragStartPos;
     private Camera mainCam;
+    
+    //public LayerMask playerLayerMask;
 
     void Start()
     {
@@ -58,7 +60,7 @@ public class ThrowManager : MonoBehaviour
                 continue;
             }
 
-            RaycastHit2D[] hits = Physics2D.RaycastAll(currentPos, velocity, velocity.magnitude * timestep);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(currentPos, velocity, velocity.magnitude * timestep, wallLayerMask);
             if (hits.Length > 0)
             {
                 RaycastHit2D hit = hits[0];

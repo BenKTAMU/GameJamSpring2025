@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 451275156}
   - component: {fileID: 451275155}
   - component: {fileID: 451275154}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b8406c9c4a2144688fe17069b52f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 10
+  enemyCount: 1
 --- !u!4 &932210231
 Transform:
   m_ObjectHideFlags: 0
@@ -725,6 +725,8 @@ GameObject:
   - component: {fileID: 983995143}
   - component: {fileID: 983995142}
   - component: {fileID: 983995147}
+  - component: {fileID: 983995148}
+  - component: {fileID: 983995149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -946,6 +948,63 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &983995148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983995141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379d2164d30e38f438df6fa8f8f161aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &983995149
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983995141}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1311759348
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,12 +1015,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1311759350}
   - component: {fileID: 1311759349}
-  - component: {fileID: 1311759353}
   - component: {fileID: 1311759352}
   - component: {fileID: 1311759351}
+  - component: {fileID: 1311759354}
+  - component: {fileID: 1311759355}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1073,7 +1133,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!61 &1311759353
+--- !u!114 &1311759354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311759348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443255f8d4b521842bf6ba574ba6fd83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 983995141}
+  speed: 1.75
+  playerLayerMask: 0
+--- !u!61 &1311759355
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1130,7 +1205,7 @@ GameObject:
   - component: {fileID: 1313819741}
   - component: {fileID: 1313819744}
   - component: {fileID: 1313819743}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

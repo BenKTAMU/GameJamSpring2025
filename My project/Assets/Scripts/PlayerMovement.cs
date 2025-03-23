@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -55,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
         }
         Destroy(projectile, 0.2f);
         //StartCoroutine(ResetAttack());
+    }
+    
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     IEnumerator ResetAttack()
