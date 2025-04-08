@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     private StateManager stateManager;
     public ParticleSystem particleSystem;
+    public AudioSource enemyHitSound;
     void Start()
     {
         GameObject stateManagerObject = GameObject.Find("StateManager");
@@ -33,8 +34,10 @@ public class Enemy : MonoBehaviour
             if (Vector2.Dot(collisionDirection, enemyForward) < 0)
             {
                 Instantiate(particleSystem, transform.position, Quaternion.identity);
+                enemyHitSound.Play();
                 Destroy(gameObject);
                 stateManager.EnemyDecrement();
+                
                 Debug.Log("Enemy hit from behind");
                 
             }

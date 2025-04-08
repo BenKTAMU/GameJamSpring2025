@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 mousePos;
     private bool isAttacking;
     
+    
+    
+    
 
     // Update is called once per frame
     void Update()

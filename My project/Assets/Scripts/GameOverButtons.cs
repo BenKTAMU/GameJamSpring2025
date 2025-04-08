@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverButtons : MonoBehaviour
 {
+    public AudioSource buttonSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +20,19 @@ public class GameOverButtons : MonoBehaviour
 
     public void onStartButton()
     {
-        SceneManager.LoadScene("SampleScene");
+        buttonSound.Play();
+        StartCoroutine(LoadSceneAfterDelay("SampleScene", 0.5f));
+        
     }
     public void onQuitButton()
-    {
+    { 
+        buttonSound.Play();
         Application.Quit();
+    }
+
+    private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 }

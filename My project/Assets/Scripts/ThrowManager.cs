@@ -9,12 +9,20 @@ public class ThrowManager : MonoBehaviour
     public LayerMask wallLayerMask;
     private Vector3 dragStartPos;
     private Camera mainCam;
+    public AudioSource throwSound;
+
+
+    public float maxForce = 10f;
+    
+    
     
     //public LayerMask playerLayerMask;
 
     void Start()
     {
         mainCam = Camera.main;
+        lineRenderer.sortingLayerName = "Foreground";
+        lineRenderer.sortingOrder = 10;
     }
 
     void Update()
@@ -77,8 +85,14 @@ public class ThrowManager : MonoBehaviour
     }
     void FireProjectile(Vector3 force)
     {
+        if (force.magnitude > maxForce)
+        {
+            force = force.normalized * maxForce;
+        }
         GameObject proj = Instantiate(projectilePrefab, playerObj.transform.position, Quaternion.identity);
         Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
+        throwSound.Play();
+        
         if (rb != null)
         {
             rb.velocity = force;
