@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     private Vector2 mousePos;
     private bool isAttacking;
+
+    public Transform firePoint;
     
     
     
@@ -50,11 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
     void meleeAttack()
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Rigidbody2D rbProjectile = projectile.GetComponent<Rigidbody2D>();
         if (rbProjectile != null)
         {
-            rbProjectile.AddForce(transform.up * 300f, ForceMode2D.Impulse);
+            rbProjectile.AddForce(transform.up * 3f, ForceMode2D.Impulse);
         }
         Destroy(projectile, 0.2f);
         //StartCoroutine(ResetAttack());

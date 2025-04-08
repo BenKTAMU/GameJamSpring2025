@@ -55,6 +55,7 @@ public class EnemyPatrolManual : MonoBehaviour
         if (aiPath != null)
         {
             aiPath.enabled = true;
+            aiPath.maxSpeed = 7f;
             aiPath.destination = playerObject.position;
         }
     }
