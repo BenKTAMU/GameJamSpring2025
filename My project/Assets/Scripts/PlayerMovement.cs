@@ -14,20 +14,36 @@ public class PlayerMovement : MonoBehaviour
     public Camera cam;
 
     private Vector2 movement;
+    private Vector2 animMovement;
     private Vector2 mousePos;
     private bool isAttacking;
 
     public Transform firePoint;
     
+    public Animator animator;
     
-    
-    
+    public void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        animMovement.x = Input.GetAxis("Horizontal");
+        animMovement.y = Input.GetAxis("Vertical");
+        animator.SetFloat("moveX", animMovement.x);
+        animator.SetFloat("moveY", animMovement.y);
+        if(animMovement.x != 0 || animMovement.y != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        if(movement.x == 0 && movement.y == 0)
+        {
+            animator.SetBool("isMoving", false);
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
