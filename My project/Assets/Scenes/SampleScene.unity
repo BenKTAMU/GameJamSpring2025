@@ -3664,6 +3664,7 @@ GameObject:
   - component: {fileID: 983995147}
   - component: {fileID: 983995149}
   - component: {fileID: 983995150}
+  - component: {fileID: 983995151}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -3953,6 +3954,27 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3264666940372481057, guid: 12cdc985501f97747adf6541c1047c74, type: 3}
   launchPoint: {fileID: 1060748812}
   projectileSpeed: 15
+--- !u!95 &983995151
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983995141}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a609da3c8a1c1e4abea1dd2103d9333, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1018091459
 PrefabInstance:
   m_ObjectHideFlags: 0
