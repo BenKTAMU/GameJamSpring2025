@@ -144,7 +144,7 @@ MonoBehaviour:
   - {fileID: 0}
   patrolSpeed: 2
   rotationSpeed: 5
-  player: {fileID: 0}
+  player: {fileID: 5198911265401917494, guid: d6d89967d320e0941a1782842382957f, type: 3}
   chaseSpeed: 4
   loseChaseDistance: 15
   viewDistance: 5
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 4556340502822758020, guid: 71f9e2d908cf9b84f99a72f12ddf6e1f, type: 3}
-  enemyHitSound: {fileID: 0}
+  enemyHitSound: {fileID: 5976478903800913302, guid: bd7d1cfeda25cc845aef56ca77cedeb5, type: 3}
 --- !u!61 &5549201875699572778
 BoxCollider2D:
   m_ObjectHideFlags: 0

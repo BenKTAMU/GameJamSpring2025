@@ -380,7 +380,7 @@ public class EnemyPatrolManual : MonoBehaviour
 
     void CheckIfReachedDistractionPoint()
     {
-        if (Vector2.Distance(transform.position, distractionPoint) < 0.2f) 
+        if (Vector2.Distance(transform.position, distractionPoint) < 0.8f) 
         {
             Debug.Log("Enemy reached distraction point. Investigating...");
             if (distractionCoroutine == null)
