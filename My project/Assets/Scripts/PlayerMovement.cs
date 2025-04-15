@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         if(animMovement.x != 0 || animMovement.y != 0)
         {
             animator.SetBool("isMoving", true);
+            Animate();
         }
         if(movement.x == 0 && movement.y == 0)
         {
@@ -93,5 +94,14 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
         isAttacking = false;
         moveSpeed = 5f;
+    }
+
+    private void Animate()
+    {
+        if(Input.GetAxis("Horizontal")!= 0 || Input.GetAxis("Vertical") != 0)
+        {
+            animator.SetFloat("LastMoveX",Input.GetAxis("Horizontal"));
+            animator.SetFloat("LastMoveY", Input.GetAxis("Vertical"));
+        }
     }
 }

@@ -3689,6 +3689,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2342010422880640374, guid: dde672cbbbb5b1c4ab90f71bd25774e2, type: 3}
   cam: {fileID: 519420031}
   firePoint: {fileID: 1060748812}
+  animator: {fileID: 0}
 --- !u!50 &983995143
 Rigidbody2D:
   serializedVersion: 4
