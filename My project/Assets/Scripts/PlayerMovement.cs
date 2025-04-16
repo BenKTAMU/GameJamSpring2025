@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isStabbing", false);
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         animMovement.x = Input.GetAxis("Horizontal");
@@ -50,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isStabbing", true);
             meleeAttack();
-            animator.SetBool("isStabbing", false);
 
         }
         
