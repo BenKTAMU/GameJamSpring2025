@@ -48,7 +48,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
+            animator.SetBool("isStabbing", true);
             meleeAttack();
+            animator.SetBool("isStabbing", false);
+
         }
         
         
