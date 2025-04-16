@@ -148,7 +148,7 @@ MonoBehaviour:
   chaseSpeed: 4
   loseChaseDistance: 15
   viewDistance: 5
-  viewAngle: 60
+  viewAngle: 90
   targetMask:
     serializedVersion: 2
     m_Bits: 128

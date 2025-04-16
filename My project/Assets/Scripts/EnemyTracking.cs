@@ -445,23 +445,82 @@ public class EnemyPatrolManual : MonoBehaviour
 
     void UpdateLineRendererShape()
     {
-        if (!lineRenderer.enabled) return; // Don't update if hidden
+        if (!lineRenderer.enabled || obstacleMask == 0) // Also check if obstacleMask is assigned
+        {
+            // If disabled or no obstacle mask is set, draw the simple cone
+            DrawSimpleCone();
+            return;
+        }
 
         int pointsOnArc = coneResolution + 1;
         int totalPoints = pointsOnArc + 1; // Apex + Points on Arc
         if (lineRenderer.positionCount != totalPoints) { lineRenderer.positionCount = totalPoints; }
 
-        Vector3 localForward = Vector3.right; 
+        // Set the apex of the cone (enemy's local origin)
+        lineRenderer.SetPosition(0, Vector3.zero);
 
-        lineRenderer.SetPosition(0, Vector3.zero); 
+        // We need the world space forward direction for raycasting
+        // Note: Since rotation happens in Update, using transform.right here is correct
+        // if your sprite's "forward" is its local right. Adjust if needed (e.g., transform.up).
+        Vector3 worldForward = transform.right; // Assuming sprite faces right
 
         for (int i = 0; i < pointsOnArc; i++)
         {
-            float fraction = (float)i / (pointsOnArc - 1); 
+            // Calculate the angle for this point on the arc
+            float fraction = (float)i / (pointsOnArc - 1);
             float currentAngle = viewAngle / 2.0f - (viewAngle * fraction);
+
+            // Calculate the direction vector in world space based on the current angle
+            // We rotate around the Z-axis for 2D
+            Vector3 direction = Quaternion.AngleAxis(currentAngle, transform.forward) * worldForward; // Use transform.forward for Z-axis rotation
+
+            // Raycast from the enemy's position in the calculated direction
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, viewDistance, obstacleMask);
+
+            Vector3 pointPosition; // This will be in local space for the LineRenderer
+
+            if (hit.collider != null)
+            {
+                // Hit an obstacle! Place the point at the hit location.
+                // Convert the world hit point back to the enemy's local space.
+                pointPosition = transform.InverseTransformPoint(hit.point);
+            }
+            else
+            {
+                // No obstacle hit. Place the point at the full viewDistance.
+                // Convert the world direction to local space for positioning the point
+                // (Since line renderer is in local space, we need local direction * distance)
+                Vector3 localDirection = transform.InverseTransformDirection(direction);
+                pointPosition = localDirection.normalized * viewDistance; // Use normalized local direction
+            }
+
+            // Set the position for this point on the arc (index i+1 because index 0 is the apex)
+            lineRenderer.SetPosition(i + 1, pointPosition);
+        }
+    }
+
+    // Helper function for the original cone drawing logic (used if obstacleMask is not set)
+    void DrawSimpleCone()
+    {
+        if (!lineRenderer.enabled) return;
+
+        int pointsOnArc = coneResolution + 1;
+        int totalPoints = pointsOnArc + 1; // Apex + Points on Arc
+        if (lineRenderer.positionCount != totalPoints) { lineRenderer.positionCount = totalPoints; }
+
+        // Local forward depends on how your enemy is oriented, typically Vector3.right or Vector3.up
+        Vector3 localForward = Vector3.right; // Match this with worldForward assumption in the main function
+
+        lineRenderer.SetPosition(0, Vector3.zero); // Apex
+
+        for (int i = 0; i < pointsOnArc; i++)
+        {
+            float fraction = (float)i / (pointsOnArc - 1);
+            float currentAngle = viewAngle / 2.0f - (viewAngle * fraction);
+            // Rotate around the local Z-axis (0,0,1) for 2D
             Vector3 direction = Quaternion.Euler(0, 0, currentAngle) * localForward;
             Vector3 arcPointPosition = direction * viewDistance;
-            lineRenderer.SetPosition(i + 1, arcPointPosition); 
+            lineRenderer.SetPosition(i + 1, arcPointPosition);
         }
     }
 }

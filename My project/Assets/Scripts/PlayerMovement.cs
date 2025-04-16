@@ -31,18 +31,35 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         animator.SetBool("isStabbing", false);
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        animMovement.x = Input.GetAxis("Horizontal");
-        animMovement.y = Input.GetAxis("Vertical");
+        // Prioritize horizontal movement
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = 0; // Disable vertical movement
+        }
+        else if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            movement.y = Input.GetAxisRaw("Vertical");
+            movement.x = 0; // Disable horizontal movement
+        }
+        else
+        {
+            movement.x = 0;
+            movement.y = 0;
+        }
+
+        animMovement.x = movement.x;
+        animMovement.y = movement.y;
+
         animator.SetFloat("moveX", animMovement.x);
         animator.SetFloat("moveY", animMovement.y);
-        if(animMovement.x != 0 || animMovement.y != 0)
+
+        if (animMovement.x != 0 || animMovement.y != 0)
         {
             animator.SetBool("isMoving", true);
             Animate();
         }
-        if(movement.x == 0 && movement.y == 0)
+        else
         {
             animator.SetBool("isMoving", false);
         }
@@ -53,10 +70,8 @@ public class PlayerMovement : MonoBehaviour
             meleeAttack();
 
         }
-        
-        
+
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        
     }
 
     void FixedUpdate()
