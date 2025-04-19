@@ -19,6 +19,7 @@ public class PlayerAimShoot : MonoBehaviour
     private Camera mainCamera;
     private Vector2 aimDirection;
     
+    public Animator animator;
     
     
     // Start is called before the first frame update
@@ -63,12 +64,14 @@ public class PlayerAimShoot : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            animator.SetBool("throwReady", true);
             ShowTrajectory(launchPoint.position, aimDirection * projectileSpeed);
             trajectoryLine.enabled = true;
         }
         else
         {
             trajectoryLine.enabled = false;
+            animator.SetBool("throwReady", false);
         }
     }
 
@@ -76,6 +79,8 @@ public class PlayerAimShoot : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
+            animator.SetBool("throwReady", false);
+            animator.SetBool("waterbucketRelease", true);
             FireProjectile();
             trajectoryLine.enabled = false;
         }
@@ -132,11 +137,11 @@ public class PlayerAimShoot : MonoBehaviour
         if (rb != null)
         {
             rb.velocity = aimDirection * projectileSpeed;
+            animator.SetBool("waterbucketRelease", false);
         }
         else
         {
             Debug.LogError("Projectile missing Rigidbody2D component!");
         }
-        
     }
 }

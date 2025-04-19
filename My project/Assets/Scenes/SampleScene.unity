@@ -13677,6 +13677,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5198911265401917494, guid: d6d89967d320e0941a1782842382957f, type: 3}
   m_PrefabInstance: {fileID: 7521395380797034076}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &983995146 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6054578955931068326, guid: d6d89967d320e0941a1782842382957f, type: 3}
+  m_PrefabInstance: {fileID: 7521395380797034076}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1059835499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16059,10 +16064,18 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5445885268693847246, guid: d6d89967d320e0941a1782842382957f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 983995146}
     - target: {fileID: 5608719138819937939, guid: d6d89967d320e0941a1782842382957f, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6488439804215787716, guid: d6d89967d320e0941a1782842382957f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 983995146}
     - target: {fileID: 6488439804215787716, guid: d6d89967d320e0941a1782842382957f, type: 3}
       propertyPath: trajectoryCollisionMask.m_Bits
       value: 776
