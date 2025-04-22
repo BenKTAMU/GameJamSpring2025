@@ -17583,7 +17583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b8406c9c4a2144688fe17069b52f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 8
+  enemyCount: 6
+  level: 2
 --- !u!4 &932210231
 Transform:
   m_ObjectHideFlags: 0

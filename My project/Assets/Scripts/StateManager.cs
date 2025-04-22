@@ -7,6 +7,7 @@ public class StateManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public int enemyCount;
+    public int level;
     void Start()
     {
         
@@ -17,7 +18,14 @@ public class StateManager : MonoBehaviour
     {
         if(enemyCount == 0)
         {
-            SceneManager.LoadScene("GameOver");
+            if (level == 1)
+            {
+                SceneManager.LoadScene("Level 2");
+            }
+            else if(level == 2)
+            {
+                SceneManager.LoadScene("Level 3");
+            }
         }
     }
 

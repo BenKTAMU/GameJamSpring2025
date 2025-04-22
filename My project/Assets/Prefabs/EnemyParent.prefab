@@ -145,7 +145,7 @@ MonoBehaviour:
   patrolSpeed: 2
   rotationSpeed: 5
   player: {fileID: 5198911265401917494, guid: d6d89967d320e0941a1782842382957f, type: 3}
-  chaseSpeed: 4
+  chaseSpeed: 7
   loseChaseDistance: 15
   viewDistance: 5
   viewAngle: 90
