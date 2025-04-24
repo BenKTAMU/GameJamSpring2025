@@ -45,6 +45,7 @@ public class EnemyPatrolManual : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3 currentForwardDirection = Vector3.right;
     private Rigidbody2D rb; 
+    private Animator animator;
 
     void Awake() 
     {
@@ -111,6 +112,10 @@ public class EnemyPatrolManual : MonoBehaviour
                 HandleDistractedState();
                 break;
         }
+
+        //Setting the animation variables based on object velocity
+        //animator.SetFloat("moveX", rb.linearVelocity.x);
+        //animator.SetFloat("moveY", rb.linearVelocity.y);
     }
 
   
