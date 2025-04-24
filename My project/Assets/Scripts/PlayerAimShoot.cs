@@ -88,7 +88,7 @@ public class PlayerAimShoot : MonoBehaviour
 
     void ShowTrajectory(Vector2 startPoint, Vector2 initialVelocity)
     {
-        Debug.Log("Showing trajectory from: " + startPoint + " with velocity: " + initialVelocity);
+       // Debug.Log("Showing trajectory from: " + startPoint + " with velocity: " + initialVelocity);
         List<Vector3> points = new List<Vector3>();
         points.Add(startPoint);
 

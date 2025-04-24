@@ -146,7 +146,7 @@ MonoBehaviour:
   rotationSpeed: 5
   player: {fileID: 5198911265401917494, guid: d6d89967d320e0941a1782842382957f, type: 3}
   chaseSpeed: 7
-  loseChaseDistance: 15
+  loseChaseDistance: 35
   viewDistance: 5
   viewAngle: 90
   targetMask:
@@ -291,7 +291,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &8165955297870553500
 SpriteRenderer:

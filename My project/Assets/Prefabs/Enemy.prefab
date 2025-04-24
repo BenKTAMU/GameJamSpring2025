@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7436544332364430013}
   - component: {fileID: 7709332381918677358}
   - component: {fileID: 7470088053491140763}
-  - component: {fileID: 2856032461634527559}
   - component: {fileID: 7569971589366858471}
   - component: {fileID: 3044901782251096543}
   m_Layer: 0
@@ -123,31 +122,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2439361998538226202}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072c497523880364ca7ec61f7081a2d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystem: {fileID: 4556340502822758020, guid: 71f9e2d908cf9b84f99a72f12ddf6e1f, type: 3}
   enemyHitSound: {fileID: 0}
---- !u!114 &2856032461634527559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2439361998538226202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443255f8d4b521842bf6ba574ba6fd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  speed: 1.75
-  detectionRange: 2.8
-  waypoints:
-  - {fileID: 0}
-  playerLayerMask: 0
 --- !u!61 &7569971589366858471
 BoxCollider2D:
   m_ObjectHideFlags: 0

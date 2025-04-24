@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Projectile")
         {
+            //GetComponent<Collider2D>().enabled = false;
             Vector2 collisionDirection = collision.contacts[0].point - (Vector2)transform.position;
             Vector2 enemyForward = -transform.up;
 
@@ -36,8 +37,10 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(particleSystem, transform.position, Quaternion.identity);
                 enemyHitSound.Play();
-                Destroy(gameObject);
+                
                 stateManager.EnemyDecrement();
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
                 
                 Debug.Log("Enemy hit from behind");
                 

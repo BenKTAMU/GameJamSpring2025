@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform firePoint;
     
     public Animator animator;
+
+    public StateManager stateManager;
     
     public void Start()
     {
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            SceneManager.LoadScene("GameOver");
+            stateManager.playerDeath();
         }
     }
 
