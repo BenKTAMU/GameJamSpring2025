@@ -20,8 +20,10 @@ public class PlayerAimShoot : MonoBehaviour
     private Camera mainCamera;
     private Vector2 aimDirection;
     private Quaternion knifeRotation;
+    private Vector2 aimDirectionNormalized;
     
     public Animator animator;
+    public AudioSource knifeThrowAudio;
     
     
     // Start is called before the first frame update
@@ -30,6 +32,7 @@ public class PlayerAimShoot : MonoBehaviour
         mainCamera = Camera.main;
         if (trajectoryLine == null)
         {
+            
             Debug.LogError("Trajectory Line Renderer not assigned!");
             enabled = false;
         }
@@ -74,6 +77,7 @@ public class PlayerAimShoot : MonoBehaviour
         {
             animator.SetBool("throwReady", false);
             animator.SetBool("waterbucketRelease", true);
+            
             if (GameObject.FindGameObjectsWithTag("Projectile").Length == 0)
             {
                 FireProjectile(knifeRotation);
@@ -139,6 +143,7 @@ public class PlayerAimShoot : MonoBehaviour
         if (rb != null)
         {
             rb.velocity = aimDirection * projectileSpeed;
+            knifeThrowAudio.Play();
             animator.SetBool("waterbucketRelease", false);
         }
         else

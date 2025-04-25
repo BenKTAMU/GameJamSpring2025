@@ -44,8 +44,9 @@ public class EnemyPatrolManual : MonoBehaviour
     // Private variables
     private LineRenderer lineRenderer;
     private Vector3 currentForwardDirection = Vector3.right;
-    private Rigidbody2D rb; 
+    private Rigidbody2D rb;
 
+    private bool hasPlayedSound;
     void Awake() 
     {
         aiPath = GetComponent<AIPath>();
@@ -232,7 +233,13 @@ public class EnemyPatrolManual : MonoBehaviour
                  // If player layer is hit first (no obstacles)
                  if (hit.collider != null && ((1 << hit.collider.gameObject.layer) & targetMask) != 0)
                  {
-                     StartChase(player); // Player detected, switch to chase state
+                     if (!hasPlayedSound)
+                     {
+                         GameObject.Find("PlayerSpotted").GetComponent<AudioSource>().Play(); // Play sound
+                         StartChase(player); // Player detected, switch to chase state
+                         hasPlayedSound = true;
+                     }
+
                  }
              }
         }
@@ -323,6 +330,7 @@ public class EnemyPatrolManual : MonoBehaviour
         CalculatePatrolDirection();
         lineRenderer.enabled = true;
         UpdateLineRendererShape();
+
     }
 
     // --- Distraction Logic ---

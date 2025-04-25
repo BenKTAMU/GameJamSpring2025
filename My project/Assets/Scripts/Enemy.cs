@@ -24,12 +24,13 @@ public class Enemy : MonoBehaviour
         
     }
     
-    void OnCollisionEnter2D(Collision2D collision)
+void OnCollisionEnter2D(Collision2D collision)
+{
+    Debug.Log(collision.gameObject.tag);
+    if (collision.gameObject.tag == "Projectile")
     {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.contacts.Length > 0)
         {
-            //GetComponent<Collider2D>().enabled = false;
             Vector2 collisionDirection = collision.contacts[0].point - (Vector2)transform.position;
             Vector2 enemyForward = -transform.up;
 
@@ -37,20 +38,32 @@ public class Enemy : MonoBehaviour
             {
                 Instantiate(particleSystem, transform.position, Quaternion.identity);
                 enemyHitSound.Play();
-                
-                stateManager.EnemyDecrement();
+
+                if (stateManager != null)
+                {
+                    stateManager.EnemyDecrement();
+                }
+                else
+                {
+                    Debug.LogWarning("StateManager is null!");
+                }
+
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
-                
+
                 Debug.Log("Enemy hit from behind");
-                
             }
             else
             {
                 Debug.Log("Enemy not hit from behind");
             }
         }
+        else
+        {
+            Debug.LogWarning("No collision contacts found!");
+        }
     }
+}
     
     
 }
