@@ -32,7 +32,7 @@ void OnCollisionEnter2D(Collision2D collision)
         if (collision.contacts.Length > 0)
         {
             Vector2 collisionDirection = collision.contacts[0].point - (Vector2)transform.position;
-            Vector2 enemyForward = -transform.up;
+            Vector2 enemyForward = transform.right;
 
             if (Vector2.Dot(collisionDirection, enemyForward) < 0)
             {
