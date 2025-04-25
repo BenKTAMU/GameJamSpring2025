@@ -163,6 +163,7 @@ MonoBehaviour:
   coneColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   coneLineWidth: 0.1
   coneResolution: 30
+  playerSpotted: {fileID: 7929202951265753591, guid: 8d9a732005073864f89c6f04a3dd460b, type: 3}
 --- !u!120 &2289307012113750338
 LineRenderer:
   serializedVersion: 2
