@@ -6,8 +6,8 @@ using System.Collections;
 public class EnemyPatrolManual : MonoBehaviour
 {
     // --- State Machine ---
-    private enum AIState { Patrolling, Chasing, Distracted }
-    private AIState currentState = AIState.Patrolling;
+    public enum AIState { Patrolling, Chasing, Distracted }
+    public AIState currentState = AIState.Patrolling;
 
     [Header("Patrol Settings")]
     public Transform[] waypoints;
@@ -19,7 +19,7 @@ public class EnemyPatrolManual : MonoBehaviour
     public Transform player;
     public float chaseSpeed = 7f;
     public float loseChaseDistance = 15f; 
-    private AIPath aiPath;
+    public AIPath aiPath;
 
     [Header("Vision Settings")]
     public float viewDistance = 5f; 
@@ -47,6 +47,8 @@ public class EnemyPatrolManual : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool hasPlayedSound;
+    public bool isChasing = false;
+
     void Awake() 
     {
         aiPath = GetComponent<AIPath>();
@@ -118,6 +120,8 @@ public class EnemyPatrolManual : MonoBehaviour
 
     void HandlePatrolState()
     {
+        hasPlayedSound = false;
+        isChasing = false;
         // Ensure components are in the correct state for patrolling
         if (aiPath != null && aiPath.canMove)
         {
@@ -134,6 +138,7 @@ public class EnemyPatrolManual : MonoBehaviour
 
     void HandleChaseState()
     {
+        isChasing = true;
         // Ensure components are in the correct state for chasing
         if (aiPath != null && !aiPath.canMove)
         {
@@ -318,7 +323,6 @@ public class EnemyPatrolManual : MonoBehaviour
 
         Debug.Log("Stopping Chase, Resuming Patrol.");
         currentState = AIState.Patrolling;
-
         if (aiPath != null)
         {
             aiPath.canMove = false;
@@ -330,7 +334,6 @@ public class EnemyPatrolManual : MonoBehaviour
         CalculatePatrolDirection();
         lineRenderer.enabled = true;
         UpdateLineRendererShape();
-
     }
 
     // --- Distraction Logic ---

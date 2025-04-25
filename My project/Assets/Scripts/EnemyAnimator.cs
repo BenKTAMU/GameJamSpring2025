@@ -47,12 +47,24 @@ public class EnemyAnimator : MonoBehaviour
             yDirection = parent.transform.position.y;
             velocityX = (xDirection - lastXDirection)/Time.deltaTime;
             velocityY = (yDirection-lastYDirection)/Time.deltaTime;
-
+            
             if(velocityX != 0 && velocityY != 0 || lastVelocityX != 0 && lastVelocityY != 0)
             {
                 animator.SetBool("isMoving", true);
-                animator.SetFloat("moveX", velocityX);
-                animator.SetFloat("moveY", velocityY);
+                if(parent.GetComponent<EnemyPatrolManual>().isChasing == false)
+                {
+                    velocityX = (xDirection - lastXDirection)/Time.deltaTime;
+                    velocityY = (yDirection-lastYDirection)/Time.deltaTime;
+                    animator.SetFloat("moveX", velocityX);
+                    animator.SetFloat("moveY", velocityY);
+                }
+                if(parent.GetComponent<EnemyPatrolManual>().isChasing == true)
+                {
+                    velocityX = parent.GetComponent<EnemyPatrolManual>().aiPath.desiredVelocity.x;
+                    velocityY = parent.GetComponent<EnemyPatrolManual>().aiPath.desiredVelocity.y;
+                    animator.SetFloat("moveX", velocityX);
+                    animator.SetFloat("moveY", velocityY);
+                }
             }
             else
             {

@@ -147,7 +147,7 @@ MonoBehaviour:
   rotationSpeed: 5
   player: {fileID: 5198911265401917494, guid: d6d89967d320e0941a1782842382957f, type: 3}
   chaseSpeed: 7
-  loseChaseDistance: 35
+  loseChaseDistance: 15
   viewDistance: 5
   viewAngle: 90
   targetMask:
@@ -163,7 +163,6 @@ MonoBehaviour:
   coneColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   coneLineWidth: 0.1
   coneResolution: 30
-  playerSpotted: {fileID: 7929202951265753591, guid: 8d9a732005073864f89c6f04a3dd460b, type: 3}
 --- !u!120 &2289307012113750338
 LineRenderer:
   serializedVersion: 2
