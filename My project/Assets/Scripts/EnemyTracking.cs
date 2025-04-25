@@ -45,7 +45,6 @@ public class EnemyPatrolManual : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3 currentForwardDirection = Vector3.right;
     private Rigidbody2D rb; 
-    private Animator animator;
 
     void Awake() 
     {
@@ -69,7 +68,7 @@ public class EnemyPatrolManual : MonoBehaviour
         if (aiPath != null)
         {
             aiPath.maxSpeed = chaseSpeed;
-            aiPath.enableRotation = true;
+            aiPath.enableRotation = false;
             aiPath.rotationSpeed = rotationSpeed * 2f; 
             aiPath.pickNextWaypointDist = 0.5f;
             aiPath.endReachedDistance = 0.5f;
@@ -112,10 +111,6 @@ public class EnemyPatrolManual : MonoBehaviour
                 HandleDistractedState();
                 break;
         }
-
-        //Setting the animation variables based on object velocity
-        //animator.SetFloat("moveX", rb.linearVelocity.x);
-        //animator.SetFloat("moveY", rb.linearVelocity.y);
     }
 
   
