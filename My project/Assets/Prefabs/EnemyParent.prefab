@@ -434,7 +434,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.74, y: 0.74, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8757057499524135566}
@@ -504,14 +504,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 2273565870844501841}
-  enemyChild: {fileID: 6184057755600005801}
   parent_xrot: 0
   parent_yrot: 0
   parent_zrot: 0
+  xDirection: 0
+  yDirection: 0
+  lastYDirection: 0
+  lastXDirection: 0
   velocityX: 0
   velocityY: 0
+  lastVelocityX: 0
+  lastVelocityY: 0
   animator: {fileID: 1384724950838111124}
-  enemyChildRB: {fileID: 0}
+  sillyNumber: 0
 --- !u!95 &1384724950838111124
 Animator:
   serializedVersion: 5
@@ -600,10 +605,5 @@ PrefabInstance:
 --- !u!4 &4781999701915381131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3915148112704585016, guid: bc0791cfd053a92488bd72b0251703de, type: 3}
-  m_PrefabInstance: {fileID: 8361061435236454579}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6184057755600005801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2439361998538226202, guid: bc0791cfd053a92488bd72b0251703de, type: 3}
   m_PrefabInstance: {fileID: 8361061435236454579}
   m_PrefabAsset: {fileID: 0}
