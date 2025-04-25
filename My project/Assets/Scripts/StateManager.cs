@@ -29,6 +29,11 @@ public class StateManager : MonoBehaviour
                 SceneManager.LoadScene("Level 3");
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Application.Quit();
+        }
     }
 
     public void EnemyDecrement()
