@@ -19,6 +19,7 @@ public class PlayerAimShoot : MonoBehaviour
 
     private Camera mainCamera;
     private Vector2 aimDirection;
+    private float knifeDegrees;
     private Quaternion knifeRotation;
     
     public Animator animator;
@@ -62,7 +63,8 @@ public class PlayerAimShoot : MonoBehaviour
         mouseWorldPosition.z = launchPoint.position.z;
 
         aimDirection = (mouseWorldPosition - launchPoint.position).normalized;
-        Quaternion knifeRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Acos(aimDirection.x));
+
+        Quaternion knifeRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * (Mathf.Acos(aimDirection.x) - Mathf.Asin(aimDirection.y)) + 90);
 
         if (Input.GetMouseButton(0))
         {
