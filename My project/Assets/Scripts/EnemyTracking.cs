@@ -120,7 +120,6 @@ public class EnemyPatrolManual : MonoBehaviour
 
     void HandlePatrolState()
     {
-        hasPlayedSound = false;
         isChasing = false;
         // Ensure components are in the correct state for patrolling
         if (aiPath != null && aiPath.canMove)
