@@ -37,7 +37,7 @@ public class ThrowManager : MonoBehaviour
             Vector3 force = (dragStartPos - dragEndPos) * powerMultiplier;
             ShowTrajectory(playerObj.transform.position, force);
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && GameObject.FindGameObjectsWithTag("Projectile").Length == 0)
         {
             Vector3 dragEndPos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
             Vector3 force = (dragStartPos - dragEndPos) * powerMultiplier;
