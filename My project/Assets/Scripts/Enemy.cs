@@ -32,12 +32,11 @@ void OnCollisionEnter2D(Collision2D collision)
         if (collision.contacts.Length > 0)
         {
             Vector2 collisionDirection = collision.contacts[0].point - (Vector2)transform.position;
-            Vector2 enemyForward = -transform.up;
+            Vector2 enemyForward = transform.right;
 
             if (Vector2.Dot(collisionDirection, enemyForward) < 0)
             {
-                Instantiate(particleSystem, transform.position, Quaternion.identity);
-                enemyHitSound.Play();
+                
 
                 if (stateManager != null)
                 {
@@ -50,6 +49,8 @@ void OnCollisionEnter2D(Collision2D collision)
 
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
+                Instantiate(particleSystem, transform.position, Quaternion.identity);
+                enemyHitSound.Play();
 
                 Debug.Log("Enemy hit from behind");
             }
