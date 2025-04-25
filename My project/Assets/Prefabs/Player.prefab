@@ -136,6 +136,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   firePoint: {fileID: 2280425804511496682}
   animator: {fileID: 0}
+  stateManager: {fileID: 0}
 --- !u!120 &6734187959756775140
 LineRenderer:
   serializedVersion: 2
@@ -175,9 +176,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2007459879
-  m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 9
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -272,7 +273,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.060218096, y: 0.0014786124}
+  m_Offset: {x: -0.060218096, y: -0.7}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -283,7 +284,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4136732, y: 2.4879289}
+  m_Size: {x: 1.58, y: 1.19}
   m_EdgeRadius: 0
 --- !u!114 &6488439804215787716
 MonoBehaviour:
@@ -306,6 +307,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3264666940372481057, guid: 12cdc985501f97747adf6541c1047c74, type: 3}
   launchPoint: {fileID: 2280425804511496682}
   projectileSpeed: 15
+  animator: {fileID: 0}
 --- !u!95 &6054578955931068326
 Animator:
   serializedVersion: 5

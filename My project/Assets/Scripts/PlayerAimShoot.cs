@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerAimShoot : MonoBehaviour
@@ -18,6 +19,8 @@ public class PlayerAimShoot : MonoBehaviour
 
     private Camera mainCamera;
     private Vector2 aimDirection;
+    private float knifeDegrees;
+    private Quaternion knifeRotation;
     
     public Animator animator;
     
@@ -50,11 +53,10 @@ public class PlayerAimShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleAiming();
         HandleShooting();
     }
 
-    void HandleAiming()
+    void HandleShooting()
     {
         Vector3 mouseScreenPosition = Input.mousePosition;
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, mainCamera.nearClipPlane + 10f)); //update according to where camera is
@@ -62,27 +64,28 @@ public class PlayerAimShoot : MonoBehaviour
 
         aimDirection = (mouseWorldPosition - launchPoint.position).normalized;
 
+        Quaternion knifeRotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * (Mathf.Acos(aimDirection.x) - Mathf.Asin(aimDirection.y)) + 90);
+
         if (Input.GetMouseButton(0))
         {
             animator.SetBool("throwReady", true);
             ShowTrajectory(launchPoint.position, aimDirection * projectileSpeed);
             trajectoryLine.enabled = true;
         }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            animator.SetBool("throwReady", false);
+            animator.SetBool("waterbucketRelease", true);
+            if (GameObject.FindGameObjectsWithTag("Projectile").Length == 0)
+            {
+                FireProjectile(knifeRotation);
+            }
+            trajectoryLine.enabled = false;
+        }
         else
         {
             trajectoryLine.enabled = false;
             animator.SetBool("throwReady", false);
-        }
-    }
-
-    void HandleShooting()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            animator.SetBool("throwReady", false);
-            animator.SetBool("waterbucketRelease", true);
-            FireProjectile();
-            trajectoryLine.enabled = false;
         }
     }
 
@@ -127,11 +130,12 @@ public class PlayerAimShoot : MonoBehaviour
         trajectoryLine.SetPositions(points.ToArray());
     }
 
-    void FireProjectile()
+    void FireProjectile(Quaternion rotation)
     {
         if (projectilePrefab == null) return;
         
-        GameObject projectileInstance = Instantiate(projectilePrefab, launchPoint.position, Quaternion.identity);
+        GameObject projectileInstance = Instantiate(projectilePrefab, launchPoint.position, rotation);
+        Debug.Log(rotation);
         Rigidbody2D rb = projectileInstance.GetComponent<Rigidbody2D>();
 
         if (rb != null)
