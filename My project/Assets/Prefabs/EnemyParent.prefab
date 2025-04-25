@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66bb9fa5dc092b41bcc354c77419e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -148,6 +149,7 @@ MonoBehaviour:
   player: {fileID: 5198911265401917494, guid: d6d89967d320e0941a1782842382957f, type: 3}
   chaseSpeed: 7
   loseChaseDistance: 15
+  aiPath: {fileID: 0}
   viewDistance: 5
   viewAngle: 90
   targetMask:
@@ -163,6 +165,7 @@ MonoBehaviour:
   coneColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   coneLineWidth: 0.1
   coneResolution: 30
+  isChasing: 0
 --- !u!120 &2289307012113750338
 LineRenderer:
   serializedVersion: 2

@@ -272,7 +272,7 @@ public class EnemyPatrolManual : MonoBehaviour
     {
         if (player == null) // Player destroyed or unassigned
         {
-            StopChase();
+            //StopChase();
             return;
         }
         
@@ -285,7 +285,7 @@ public class EnemyPatrolManual : MonoBehaviour
 
         if (distanceToPlayer > loseChaseDistance || pathInvalid)
         {
-            StopChase();
+            //StopChase();
         }
     }
 
@@ -402,15 +402,17 @@ public class EnemyPatrolManual : MonoBehaviour
 
     IEnumerator InvestigateTimer()
     {
+        UpdateLineRendererShape();
         yield return new WaitForSeconds(distractionInvestigateTime);
 
         Debug.Log("Investigation complete. Returning to patrol.");
         distractionCoroutine = null; // Mark coroutine as finished
-        currentState = AIState.Patrolling; // Switch back to patrol state
+        //currentState = AIState.Patrolling; // Switch back to patrol state
 
         CalculatePatrolDirection();
         lineRenderer.enabled = true; // Show cone again
-        UpdateLineRendererShape();
+        
+        
     }
 
 

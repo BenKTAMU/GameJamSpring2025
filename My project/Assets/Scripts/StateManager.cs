@@ -10,6 +10,7 @@ public class StateManager : MonoBehaviour
     public int enemyCount;
     public int level;
     public Text enemyCountText;
+    public AudioSource backgroundMusic;
     void Start()
     {
         UpdateEnemyCountText();
@@ -45,7 +46,8 @@ public class StateManager : MonoBehaviour
     }
 
     public void playerDeath()
-    {
+    {   
+        backgroundMusic.Stop();
         FindObjectOfType<SceneTransitionManager>().ReloadScene();
     }
 

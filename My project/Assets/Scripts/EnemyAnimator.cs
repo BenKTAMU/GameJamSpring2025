@@ -48,22 +48,34 @@ public class EnemyAnimator : MonoBehaviour
             velocityX = (xDirection - lastXDirection)/Time.deltaTime;
             velocityY = (yDirection-lastYDirection)/Time.deltaTime;
             
-            if(velocityX != 0 && velocityY != 0 || lastVelocityX != 0 && lastVelocityY != 0)
+            if(Mathf.Abs(velocityX) > 0.01f || Mathf.Abs(velocityY) > 0.01f)
             {
-                animator.SetBool("isMoving", true);
+                
                 if(parent.GetComponent<EnemyPatrolManual>().isChasing == false)
                 {
+                    animator.SetBool("isMoving", true);
                     velocityX = (xDirection - lastXDirection)/Time.deltaTime;
                     velocityY = (yDirection-lastYDirection)/Time.deltaTime;
                     animator.SetFloat("moveX", velocityX);
                     animator.SetFloat("moveY", velocityY);
                 }
-                if(parent.GetComponent<EnemyPatrolManual>().isChasing == true)
+                else if(velocityX != 0 && velocityY != 0 || lastVelocityX != 0 && lastVelocityY != 0)
                 {
-                    velocityX = parent.GetComponent<EnemyPatrolManual>().aiPath.desiredVelocity.x;
-                    velocityY = parent.GetComponent<EnemyPatrolManual>().aiPath.desiredVelocity.y;
-                    animator.SetFloat("moveX", velocityX);
-                    animator.SetFloat("moveY", velocityY);
+                    if ( parent.GetComponent<EnemyPatrolManual>().isChasing == true)
+                    {
+                        animator.SetBool("isMoving", true);
+                        velocityX = parent.GetComponent<EnemyPatrolManual>().aiPath.velocity.x;
+                        velocityY = parent.GetComponent<EnemyPatrolManual>().aiPath.velocity.y;
+                        animator.SetFloat("moveX", velocityX);
+                        animator.SetFloat("moveY", velocityY);
+                    }
+                    else
+                    {
+                        animator.SetBool("isMoving", false);
+                        animator.SetFloat("IdleX", lastVelocityX);
+                        animator.SetFloat("IdleY", lastVelocityY);
+                    }
+
                 }
             }
             else
