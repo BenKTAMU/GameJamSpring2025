@@ -64,6 +64,27 @@ public class StateManager : MonoBehaviour
 
                  }
             }
+            else if (level == 3)
+            {
+                Debug.Log("Level 2 Clear Triggered!"); 
+
+                if (backgroundMusic != null && backgroundMusic.isPlaying)
+                {
+                    backgroundMusic.Stop(); 
+                }
+
+
+                if (levelClearMusic != null && levelClearMusic.clip != null)
+                {
+                    levelClearMusic.PlayOneShot(levelClearMusic.clip); // Play the sound
+                    StartCoroutine(PlaySoundAndLoadScene(levelClearMusic, "Game Over"));
+                }
+                else
+                {
+                    Debug.LogError("Level Clear Music or Clip is missing for Level 2!");
+
+                }
+            }
 
         }
 
