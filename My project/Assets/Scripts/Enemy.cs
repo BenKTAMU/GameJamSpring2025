@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private StateManager stateManager;
     public ParticleSystem particleSystem;
     public AudioSource enemyHitSound;
+    public AudioSource enemyHitSound2;
     private GameObject stateManagerObject;
     private bool isDestroyed = false; // Flag to prevent multiple calls
 
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogWarning("StateManager GameObject not found!");
         }
+        enemyHitSound2 = GameObject.Find("ImpactSound").GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -54,6 +56,7 @@ public class Enemy : MonoBehaviour
                     Destroy(collision.gameObject);
                     Instantiate(particleSystem, transform.position, Quaternion.identity);
                     enemyHitSound.Play();
+                    enemyHitSound2.Play();
 
                     Debug.Log("Enemy hit from behind");
                 }
