@@ -48,7 +48,7 @@ public class EnemyPatrolManual : MonoBehaviour
 
     private bool hasPlayedSound;
     public bool isChasing = false;
-
+    public bool isDistracted = false;
     void Awake() 
     {
         aiPath = GetComponent<AIPath>();
@@ -402,9 +402,10 @@ public class EnemyPatrolManual : MonoBehaviour
 
     IEnumerator InvestigateTimer()
     {
+        isDistracted = true;
         UpdateLineRendererShape();
         yield return new WaitForSeconds(distractionInvestigateTime);
-
+        isDistracted = false;
         Debug.Log("Investigation complete. Returning to patrol.");
         distractionCoroutine = null; // Mark coroutine as finished
         //currentState = AIState.Patrolling; // Switch back to patrol state
