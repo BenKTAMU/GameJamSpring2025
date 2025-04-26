@@ -15497,7 +15497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 222.63, y: -56.21}
+  m_AnchoredPosition: {x: 222.63, y: -56.20999}
   m_SizeDelta: {x: 423.26, y: 66.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295387974
@@ -18308,7 +18308,7 @@ MonoBehaviour:
   enemyCount: 6
   level: 2
   enemyCountText: {fileID: 295387974}
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 1247972967}
 --- !u!4 &932210231
 Transform:
   m_ObjectHideFlags: 0

@@ -13599,7 +13599,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186766030854854052, guid: d57479d96f4ef4048b81757d3d87a0c1, type: 3}
       propertyPath: sillyNumber
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1415080889133963304, guid: d57479d96f4ef4048b81757d3d87a0c1, type: 3}
       propertyPath: m_Enabled
@@ -14122,7 +14122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 240.64, y: -76.72}
+  m_AnchoredPosition: {x: 240.64001, y: -76.72}
   m_SizeDelta: {x: 459.28, y: 107.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853544790
