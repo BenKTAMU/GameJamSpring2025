@@ -6,30 +6,67 @@ using UnityEngine.SceneManagement;
 
 public class StateManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public int enemyCount;
     public int level;
     public Text enemyCountText;
     public AudioSource backgroundMusic;
+    public AudioSource levelClearMusic;
+
+    private bool isLevelClearing = false; 
+
     void Start()
     {
         UpdateEnemyCountText();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate() 
     {
-        if(enemyCount == 0)
+ 
+        if (enemyCount == 0 && !isLevelClearing)
         {
+            isLevelClearing = true; 
             if (level == 1)
             {
-                SceneManager.LoadScene("Level 2");
+                Debug.Log("Level 1 Clear Triggered!");
+                if (backgroundMusic != null && backgroundMusic.isPlaying)
+                {
+                    backgroundMusic.Stop();
+                }
+                if (levelClearMusic != null && levelClearMusic.clip != null)
+                {
+                    levelClearMusic.PlayOneShot(levelClearMusic.clip);
+                    StartCoroutine(PlaySoundAndLoadScene(levelClearMusic, "Level 2"));
+                }
+                else
+                {
+                    Debug.LogError("Level Clear Music or Clip is missing for Level 1!");
+                    SceneManager.LoadScene("Level 2");
+                }
             }
-            else if(level == 2)
+            else if (level == 2)
             {
-                SceneManager.LoadScene("Level 3");
+                 Debug.Log("Level 2 Clear Triggered!"); 
+
+                 if (backgroundMusic != null && backgroundMusic.isPlaying)
+                 {
+                    backgroundMusic.Stop(); 
+                 }
+
+
+                 if (levelClearMusic != null && levelClearMusic.clip != null)
+                 {
+                     levelClearMusic.PlayOneShot(levelClearMusic.clip); // Play the sound
+                     StartCoroutine(PlaySoundAndLoadScene(levelClearMusic, "Level 3"));
+                 }
+                 else
+                 {
+                     Debug.LogError("Level Clear Music or Clip is missing for Level 2!");
+
+                 }
             }
+
         }
+
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -37,18 +74,50 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    private IEnumerator PlaySoundAndLoadScene(AudioSource audioSource, string sceneName)
+    {
+
+        if (audioSource != null && audioSource.clip != null)
+        {
+            yield return new WaitForSeconds(audioSource.clip.length);
+        }
+        else
+        {
+
+             Debug.LogWarning("AudioSource or clip missing in PlaySoundAndLoadScene, loading scene immediately.");
+
+        }
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void EnemyDecrement()
     {
-        enemyCount--;
-        Debug.Log("EnemyDecrement called. Current enemy count: " + enemyCount);
-        UpdateEnemyCountText();
-        
+        if (enemyCount > 0) 
+        {
+             enemyCount--;
+             Debug.Log("EnemyDecrement called. Current enemy count: " + enemyCount);
+             UpdateEnemyCountText();
+        }
     }
 
     public void playerDeath()
-    {   
-        backgroundMusic.Stop();
-        FindObjectOfType<SceneTransitionManager>().ReloadScene();
+    {
+
+        if (backgroundMusic != null && backgroundMusic.isPlaying)
+        {
+             backgroundMusic.Stop();
+        }
+
+        SceneTransitionManager transitionManager = FindObjectOfType<SceneTransitionManager>();
+        if (transitionManager != null)
+        {
+            transitionManager.ReloadScene();
+        }
+        else
+        {
+            Debug.LogError("SceneTransitionManager not found in the scene!");
+
+        }
     }
 
     private void UpdateEnemyCountText()
@@ -62,6 +131,4 @@ public class StateManager : MonoBehaviour
             Debug.LogError("Enemy Count Text is not assigned in the inspector.");
         }
     }
-    
-    
 }
